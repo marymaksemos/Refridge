@@ -17,32 +17,36 @@
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 
 stages:          # List of stages for jobs, and their order of execution
+
   - build
   - test
   - deploy
 
 build-job:       # This job runs in the build stage, which runs first.
     stage: build
-    image: node:14.17.0-alpine
+    # image: node:14.17.0-alpine
     script:
-      - npm install
-      - npm run build
+       - echo "mmm"
+      # - npm install
+      # - npm run build
 
 test-job:
     stage: test
-    image: node:14.17.0-alpine
+    # image: node:14.17.0-alpine
     script:
-      - npm install
-      - npm run test
+        - echo "fff"
+      # - npm install
+      # - npm run test
 
 deploy-job:      
     stage: deploy
-    image: mongo:4.4
+    # image: mongo:4.4
     script:
-      - docker-compose up -d
+        - echo "fff"
+      # - docker-compose up -d
 
-variables:
-  DOCKER_COMPOSE_VERSION: "1.29.1"
+# variables:
+#   DOCKER_COMPOSE_VERSION: "1.29.1"
 
 
 # environment:
