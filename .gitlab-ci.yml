@@ -45,8 +45,9 @@ deploy-job:
         - echo "fff"
       # - docker-compose up -d
 
-# variables:
-#   DOCKER_COMPOSE_VERSION: "1.29.1"
+
+variables:
+   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
 # environment:
