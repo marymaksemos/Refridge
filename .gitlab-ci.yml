@@ -16,47 +16,38 @@
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 
-stages:
+stages:          # List of stages for jobs, and their order of execution 
   - build
   - test
   - deploy
+image:  python:3.10-alpine
 
-image: python:3.10
-
-variables:
-  PYTHONDONTWRITEBYTECODE: "1"  # Skip writing .pyc files to disk
-
-before_script:
-  - pip install --upgrade pip  # Update pip to the latest version
-  - pip install -r requirements.txt  # Install dependencies
-
-build:
+build-job:       # This job runs in the build stage, which runs first.
   stage: build
   script:
     - echo "Compiling the code..."
     - echo "Compile complete."
 
-unit_test:
-  stage: test
+unit-test-job:   # This job runs in the test stage.
+  stage: test    # It only starts when the job in the build stage completes successfully.
   script:
     - echo "Running unit tests... This will take about 60 seconds."
-    - python -m unittest discover tests/
+  
 
-lint_test:
-  stage: test
+lint-test-job:   # This job also runs in the test stage.
+  stage: test  
   script:
-    - echo "Running lint tests..."
-    - pylint --exit-zero --disable=missing-module-docstring app/ tests/
+    - python -m unittest tests.py
 
-deploy:
-  stage: deploy
+
+deploy-job:
   image: docker:stable
+  stage: deploy
   services:
     - docker:dind
   script:
-    - echo "Building Docker image..."
-    - docker build --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA .
-    - echo "Pushing Docker image..."
-    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE:latest $CI_PROJECT_DIR
+    - docker push $CI_REGISTRY_IMAGE:latest # Push the image to the registry
   environment:
-    name: production
+    name: production # Set the environment name for this deployment
