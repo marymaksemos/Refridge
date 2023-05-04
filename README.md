@@ -31,8 +31,7 @@ Known Issues:
 
 Contact Us:
 
-    If you have any questions or feedback about our app, please email us at foodwasteapp@example.com or follow us on Twitter @foodwasteapp.
-
+    If you have any questions or feedback about our app, please email us at 
 
 
 
