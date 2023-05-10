@@ -1,42 +1,56 @@
 stages:
   - build
   - test
-  - deploy
+  - delivery 
 
 variables:
-  MONGO_DB_URL: "mongodb://my-vps-ip:27017/mydatabase"
+  MONGO_DB_URL: "mongodb://mongo:27017/mydatabase"
   NODE_ENV: "production"
 
-build_app:
+# cache:
+#   paths:
+#     - api/node_modules/
+#     - mobileapp/node_modules/
+
+services:
+  - mongo:latest
+
+build_api:
   stage: build
   image: node:14-alpine
   script:
-    - cd app
-    - npm install
-    - npm run build
+    - cd api && npm install
 
-test_app:
-  stage: test
+build_mobileapp:
+  stage: build
   image: node:14-alpine
-  variables:
-    MONGO_DB_URL: ${MONGO_DB_URL}
-  services:
-    - name: mongo:latest
-  before_script:
-    - cd app
-    - npm install
-    - npm start &
-    - sleep 10 # wait for MongoDB to start
   script:
-    - npm run test
-    - npm install -g newman
-    - newman run tests/postman_collection.json
+    - cd mobileapp && npm install
 
-deploy_app:
-  stage: deploy
+# test_api:
+#   stage: test
+#   image: node:14-alpine
+#   variables:
+#     MONGO_DB_URL: ${MONGO_DB_URL}
+#   services:
+#     - name: mongo:latest # add MongoDB container definition
+#       alias: mongo
+#   before_script:
+#     - cd api
+#     - npm install
+#     - npm start &
+#     - sleep 10 # wait for MongoDB to start
+#   script:
+#     - npm run test
+#     - npm install -g newman
+#     - newman run tests/postman_collection.json
+delivery _api:
+  stage: delivery 
   image: docker:latest
   services:
-    - docker:dind
+    - name: docker:dind
+    - name: mongo:latest # add MongoDB container definition
+      alias: mongo
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build -t $CI_REGISTRY_IMAGE:latest $CI_PROJECT_DIR -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
@@ -44,6 +58,5 @@ deploy_app:
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA 
   environment:
     name: production
-    url: https://example.com
   only:
     - master
