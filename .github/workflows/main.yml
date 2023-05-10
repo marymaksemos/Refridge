@@ -10,16 +10,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
-          ref: ${{ github.ref }}
           fetch-depth: 0
-
-      - name: Unshallow repository
-        run: git fetch --prune --unshallow
-      
-      - name: Mirror and trigger GitLab CI
+      - name: Fetch all Git tags
+        run: git fetch --prune --tags
+      - name: Fetch all remote branches
+        run: git fetch --prune
+      - name: Mirror + trigger CI
         uses: SvanBoxel/gitlab-mirror-and-ci-action@master
         with:
           args: "https://gitlab.com/mary.maksemos/refridge22"
