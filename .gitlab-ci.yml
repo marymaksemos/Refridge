@@ -3,9 +3,9 @@ stages:
   - test
   - delivery 
 
-variables:
-  MONGO_DB_URL: "mongodb://mongo:27017/mydatabase"
-  NODE_ENV: "production"
+# variables:
+#   MONGO_DB_URL: "mongodb://mongo:27017/mydatabase"
+#   NODE_ENV: "production"
 
 # cache:
 #   paths:
