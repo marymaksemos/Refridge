@@ -21,8 +21,6 @@ Usage:
 
             Plan your meals for the week using the meal planner feature.
             Use the food inventory tracker to keep track of the items you already have on hand
-            Check the recipe suggestions based on ingredients you already have, and add any missing items to your grocery list
-            Use the notifications feature to remind you to use up soon-to-expire items.
 
 Contact Us:
 
