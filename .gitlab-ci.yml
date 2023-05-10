@@ -12,20 +12,20 @@ stages:
 #     - api/node_modules/
 #     - mobileapp/node_modules/
 
-services:
-  - mongo:latest
+# services:
+#   - mongo:latest
 
-build_api:
-  stage: build
-  image: node:14-alpine
-  script:
-    - cd api && npm install
+# build_api:
+#   stage: build
+#   image: node:14-alpine
+#   script:
+#     - cd api && npm install
 
-build_mobileapp:
-  stage: build
-  image: node:14-alpine
-  script:
-    - cd mobileapp && npm install
+# build_mobileapp:
+#   stage: build
+#   image: node:14-alpine
+#   script:
+#     - cd mobileapp && npm install
 
 # test_api:
 #   stage: test
