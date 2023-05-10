@@ -11,26 +11,22 @@ ReFridge App
 Installation:
    To install the app, follow these steps:
 
-            Download the app from the App Store or Google Play Store
+
+            Download the app from the App Store or Google Play Store.
             Create an account using your email address 
-            Grant the app permissions to access your camera, photos, and notifications
+            Grant the app permissions to access your camera, photos, and notifications.
 
 Usage:
     To use the app, follow these steps:
 
-            Plan your meals for the week using the meal planner feature
+            Plan your meals for the week using the meal planner feature.
             Use the food inventory tracker to keep track of the items you already have on hand
             Check the recipe suggestions based on ingredients you already have, and add any missing items to your grocery list
-            Use the notifications feature to remind you to use up soon-to-expire items
- v
-
-Known Issues:
-    
-
+            Use the notifications feature to remind you to use up soon-to-expire items.
 
 Contact Us:
 
-    If you have any questions or feedback about our app, please email us at 
+    If you have any questions or feedback about our app, please email us
 
 
 
