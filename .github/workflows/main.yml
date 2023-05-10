@@ -1,26 +1,24 @@
 name: Mirror and run GitLab CI
 
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches:
       - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
     steps:
-    - uses: actions/checkout@v1
-    - name: Mirror + trigger CI
-      uses: SvanBoxel/gitlab-mirror-and-ci-action@master
-      with:
-        args: "https://gitlab.com/mary.maksemos/refridge-mirror"
-      env:
-        FOLLOW_TAGS: "false"
-        FORCE_PUSH: "false"
-        GITLAB_HOSTNAME: "gitlab.com"
-        GITLAB_USERNAME: "mary.maksemos"
-        GITLAB_PASSWORD: ${{ secrets.GITLAB_PASSWORD }} 
-        GITLAB_PROJECT_ID: "45918067" 
-        GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+      - uses: actions/checkout@v1
+      - name: Mirror + trigger CI
+        uses: SvanBoxel/gitlab-mirror-and-ci-action@master
+        with:
+          args: "https://gitlab.com/mary.maksemos/refridge-mirror"
+        env:
+          FOLLOW_TAGS: "false"
+          FORCE_PUSH: "false"
+          GITLAB_HOSTNAME: "gitlab.com"
+          GITLAB_USERNAME: "mary.maksemos"
+          GITLAB_PASSWORD: ${{ secrets.GITLAB_PASSWORD }} 
+          GITLAB_PROJECT_ID: "45918067" 
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
