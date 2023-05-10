@@ -3,47 +3,47 @@ stages:
   - test
   - delivery 
 
-# variables:
-#   MONGO_DB_URL: "mongodb://mongo:27017/mydatabase"
-#   NODE_ENV: "production"
+variables:
+  MONGO_DB_URL: "mongodb://mongo:27017/mydatabase"
+  NODE_ENV: "production"
 
-# cache:
-#   paths:
-#     - api/node_modules/
-#     - mobileapp/node_modules/
+cache:
+  paths:
+    - api/node_modules/
+    - mobileapp/node_modules/
 
-# services:
-#   - mongo:latest
+services:
+  - mongo:latest
 
-# build_api:
-#   stage: build
-#   image: node:14-alpine
-#   script:
-#     - cd api && npm install
+build_api:
+  stage: build
+  image: node:14-alpine
+  script:
+    - cd api && npm install
 
-# build_mobileapp:
-#   stage: build
-#   image: node:14-alpine
-#   script:
-#     - cd mobileapp && npm install
+build_mobileapp:
+  stage: build
+  image: node:14-alpine
+  script:
+    - cd mobileapp && npm install
 
-# test_api:
-#   stage: test
-#   image: node:14-alpine
-#   variables:
-#     MONGO_DB_URL: ${MONGO_DB_URL}
-#   services:
-#     - name: mongo:latest # add MongoDB container definition
-#       alias: mongo
-#   before_script:
-#     - cd api
-#     - npm install
-#     - npm start &
-#     - sleep 10 # wait for MongoDB to start
-#   script:
-#     - npm run test
-#     - npm install -g newman
-#     - newman run tests/postman_collection.json
+test_api:
+  stage: test
+  image: node:14-alpine
+  variables:
+    MONGO_DB_URL: ${MONGO_DB_URL}
+  services:
+    - name: mongo:latest # add MongoDB container definition
+      alias: mongo
+  before_script:
+    - cd api
+    - npm install
+    - npm start &
+    - sleep 10 # wait for MongoDB to start
+  script:
+    - npm run test
+    - npm install -g newman
+    - newman run tests/postman_collection.json
 delivery _api:
   stage: delivery 
   image: docker:latest
