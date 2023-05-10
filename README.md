@@ -20,11 +20,11 @@ Usage:
     To use the app, follow these steps:
 
             Plan your meals for the week using the meal planner feature.
-            Use the food inventory tracker to keep track of the items you already have on hand
+            Use the food inventory tracker to keep track of the items you already have on hand.
 
 Contact Us:
 
-    If you have any questions or feedback about our app, please email us
+    If you have any questions or feedback about our app, please email us.
 
 
 
