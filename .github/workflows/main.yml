@@ -15,12 +15,12 @@ jobs:
       - name: Mirror + trigger CI
         uses: SvanBoxel/gitlab-mirror-and-ci-action@master
         with:
-          args: "https://gitlab.com/mary.maksemos/refridge-mirror"
+          args: "https://gitlab.com/mary.maksemos/refridge"
         env:
           FOLLOW_TAGS: "false"
           FORCE_PUSH: "false"
           GITLAB_HOSTNAME: "gitlab.com"
           GITLAB_USERNAME: "mary.maksemos"
           GITLAB_PASSWORD: ${{ secrets.GITLAB_PASSWORD }} 
-          GITLAB_PROJECT_ID: "45954808" 
+          GITLAB_PROJECT_ID: "45955242" 
           GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
