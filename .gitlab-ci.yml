@@ -1,7 +1,7 @@
 stages:
   - build
   - test
-  - delivery 
+  - deliver
 
 variables:
   MONGO_DB_URL: "mongodb://mongo:27017/mydatabase"
@@ -12,32 +12,31 @@ cache:
     - node_modules/
 
 services:
-  - mongo:latest
+  - name: mongo:latest
+    alias: mongo
 
 build:
   stage: build
   image: node:14-alpine
   script:
-    - npm install
+    - npm ci --ignore-scripts
 
 test:
   stage: test
   image: node:14-alpine
   variables:
     MONGO_DB_URL: ${MONGO_DB_URL}
-  services:
-    - name: mongo:latest
-      alias: mongo
   before_script:
+    - npm ci --ignore-scripts
     - npm start &
     - sleep 10
   script:
     - npm run test
-    - npm install -g newman
+    - npm install --global newman
     - newman run tests/postman_collection.json
 
-delivery:
-  stage: delivery
+deliver:
+  stage: deliver
   image: docker:latest
   services:
     - name: docker:dind
@@ -51,4 +50,4 @@ delivery:
   environment:
     name: production
   only:
-    - master
+    - merge_requests
