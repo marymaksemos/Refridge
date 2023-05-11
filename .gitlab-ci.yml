@@ -21,7 +21,6 @@ build:
   script:
     - npm ci --ignore-scripts
     
-
 # test:
 #   stage: test
 #   image: node:14-alpine
