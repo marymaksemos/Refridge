@@ -19,7 +19,7 @@ build:
   stage: build
   image: node:14-alpine
   script:
-    - npm ci --ignore-scripts
+    -  npm install
     
 # test:
 #   stage: test
