@@ -5,7 +5,7 @@ on:
       - opened
       - synchronize
     branches:
-      - mainn
+      - main
 
 jobs:
   build:
