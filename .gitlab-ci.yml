@@ -9,47 +9,39 @@ variables:
 
 cache:
   paths:
-    - api/node_modules/
-    - mobileapp/node_modules/
+    - node_modules/
 
 services:
   - mongo:latest
 
-build_api:
+build:
   stage: build
   image: node:14-alpine
   script:
-    - cd api && npm install
+    - npm install
 
-build_mobileapp:
-  stage: build
-  image: node:14-alpine
-  script:
-    - cd mobileapp && npm install
-
-test_api:
+test:
   stage: test
   image: node:14-alpine
   variables:
     MONGO_DB_URL: ${MONGO_DB_URL}
   services:
-    - name: mongo:latest # add MongoDB container definition
+    - name: mongo:latest
       alias: mongo
   before_script:
-    - cd api
-    - npm install
     - npm start &
-    - sleep 10 # wait for MongoDB to start
+    - sleep 10
   script:
     - npm run test
     - npm install -g newman
     - newman run tests/postman_collection.json
-delivery _api:
-  stage: delivery 
+
+delivery:
+  stage: delivery
   image: docker:latest
   services:
     - name: docker:dind
-    - name: mongo:latest # add MongoDB container definition
+    - name: mongo:latest
       alias: mongo
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
