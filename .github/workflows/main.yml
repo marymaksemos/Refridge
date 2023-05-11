@@ -1,6 +1,6 @@
 name: Mirror and run GitLab CI
 on:
-  pull_request_target:
+  pull_request:
     types:
       - opened
       - synchronize

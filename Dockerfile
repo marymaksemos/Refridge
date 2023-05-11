@@ -9,10 +9,10 @@ COPY app/package*.json ./
 # Install app dependencies
 RUN npm install
 
-# Copy the application code to the container
+# Copy the application code to the container.
 COPY app/ .
 
-# Expose the application port
+# Expose the application port.
 EXPOSE 3000
 
 # Start the application
