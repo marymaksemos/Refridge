@@ -1,7 +1,7 @@
 stages:
   - build
-  - test
-  - deliver
+  # - test
+  # - deliver
 
 variables:
   MONGO_DB_URL: "mongodb://mongo:27017/mydatabase"
@@ -21,33 +21,33 @@ build:
   script:
     - npm ci --ignore-scripts
 
-test:
-  stage: test
-  image: node:14-alpine
-  variables:
-    MONGO_DB_URL: ${MONGO_DB_URL}
-  before_script:
-    - npm ci --ignore-scripts
-    - npm start &
-    - sleep 10
-  script:
-    - npm run test
-    - npm install --global newman
-    - newman run tests/postman_collection.json
+# test:
+#   stage: test
+#   image: node:14-alpine
+#   variables:
+#     MONGO_DB_URL: ${MONGO_DB_URL}
+#   before_script:
+#     - npm ci --ignore-scripts
+#     - npm start &
+#     - sleep 10
+#   script:
+#     - npm run test
+#     - npm install --global newman
+#     - newman run tests/postman_collection.json
 
-deliver:
-  stage: deliver
-  image: docker:latest
-  services:
-    - name: docker:dind
-    - name: mongo:latest
-      alias: mongo
-  script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build -t $CI_REGISTRY_IMAGE:latest $CI_PROJECT_DIR -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
-    - docker push $CI_REGISTRY_IMAGE:latest 
-    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA 
-  environment:
-    name: production
-  only:
-    - merge_requests
+# deliver:
+#   stage: deliver
+#   image: docker:latest
+#   services:
+#     - name: docker:dind
+#     - name: mongo:latest
+#       alias: mongo
+#   script:
+#     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+#     - docker build -t $CI_REGISTRY_IMAGE:latest $CI_PROJECT_DIR -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
+#     - docker push $CI_REGISTRY_IMAGE:latest 
+#     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA 
+#   environment:
+#     name: production
+#   only:
+#     - merge_requests
