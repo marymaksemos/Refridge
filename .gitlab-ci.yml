@@ -20,6 +20,7 @@ build:
   image: node:14-alpine
   script:
     - npm ci --ignore-scripts
+    
 
 # test:
 #   stage: test
