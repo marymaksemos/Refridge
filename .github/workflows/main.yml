@@ -16,6 +16,7 @@ jobs:
         uses: SvanBoxel/gitlab-mirror-and-ci-action@master
         with:
           args: "https://gitlab.com/mary.maksemos/refridge"
+          
         env:
           FOLLOW_TAGS: "false"
           FORCE_PUSH: "false"
