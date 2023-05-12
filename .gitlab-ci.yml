@@ -1,7 +1,7 @@
 stages:
   - build
   # - test
-  # - deliver
+  - deliver
 
 variables:
   MONGO_DB_URL: "mongodb://mongo:27017/mydatabase"
