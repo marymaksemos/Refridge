@@ -1,6 +1,6 @@
 stages:
   - build
-  # - test
+   # - test
   - deliver
 
 variables:
@@ -48,5 +48,5 @@ deliver:
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA 
   environment:
     name: production
-  only:
-    - merge_requests
+  # only:
+  #   - merge_requests
