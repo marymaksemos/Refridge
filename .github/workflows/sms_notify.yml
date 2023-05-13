@@ -20,7 +20,8 @@ jobs:
         env:
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
-          PHONE_NUMBER: 'whatsapp:+46737796897'  
+          FROM_PHONE_NUMBER: 'whatsapp:+46737796897'  
+          TO_PHONE_NUMBER: 'whatsapp:+46729141642'    
         run: |
           python - <<EOF
           from twilio.rest import Client
@@ -28,12 +29,13 @@ jobs:
 
           account_sid = os.environ['TWILIO_ACCOUNT_SID']
           auth_token = os.environ['TWILIO_AUTH_TOKEN']
-          phone_number = os.environ['PHONE_NUMBER']
+          from_phone_number = os.environ['FROM_PHONE_NUMBER']
+          to_phone_number = os.environ['TO_PHONE_NUMBER']
 
           client = Client(account_sid, auth_token)
           message = client.messages.create(
               body="Pipeline Notification: Repository - Branch - Commit",
-              from_=phone_number,
-              to=phone_number
+              from_=from_phone_number,
+              to=to_phone_number
           )
           EOF
