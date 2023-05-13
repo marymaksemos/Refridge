@@ -1,0 +1,25 @@
+name: SMS Notification
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  send_sms:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install twilio
+
+      - name: Send SMS notification
+        env:
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          PHONE_NUMBER: '+46737796897'  # Replace with the destination phone number
+        run: |
+          python send_sms.py $PHONE_NUMBER
