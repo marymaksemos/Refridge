@@ -1,11 +1,11 @@
-name: SMS Notification
+name: WhatsApp Notification
 on:
   push:
     branches:
       - main
 
 jobs:
-  send_sms:
+  send_whatsapp:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Python
@@ -16,12 +16,11 @@ jobs:
       - name: Install dependencies
         run: pip install twilio
 
-      - name: Send SMS notification
+      - name: Send WhatsApp notification
         env:
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
-          PHONE_NUMBER: '+46737796897'  
-        run: |
+          PHONE_NUMBER: 'whatsapp:+46737796897'  
           python - <<EOF
           from twilio.rest import Client
           import os
