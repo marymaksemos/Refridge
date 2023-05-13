@@ -20,6 +20,20 @@ jobs:
         env:
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
-          PHONE_NUMBER: '+46737796897'  # Replace with the destination phone number
+          PHONE_NUMBER: '+1234567890'  # Replace with the destination phone number
         run: |
-          python send_sms.py $PHONE_NUMBER
+          python - <<EOF
+          from twilio.rest import Client
+          import os
+
+          account_sid = os.environ['TWILIO_ACCOUNT_SID']
+          auth_token = os.environ['TWILIO_AUTH_TOKEN']
+          phone_number = os.environ['PHONE_NUMBER']
+
+          client = Client(account_sid, auth_token)
+          message = client.messages.create(
+              body="Pipeline Notification: Repository - Branch - Commit",
+              from_=phone_number,
+              to=phone_number
+          )
+          EOF
