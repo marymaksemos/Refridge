@@ -20,7 +20,7 @@ jobs:
         env:
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
-          PHONE_NUMBER: '+1234567890'  # Replace with the destination phone number
+          PHONE_NUMBER: '+46737796897'  
         run: |
           python - <<EOF
           from twilio.rest import Client
