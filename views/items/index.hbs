@@ -1,0 +1,22 @@
+<h2>Food items</h2>
+
+<p>
+    <a href="/items/new">Create new</a>
+</p>
+
+<div class="item-grid">
+
+    {{#each items}}
+    <article class="item">
+        <div>
+            <b>{{name}}</b> <br>
+            <i>{{quantity}}</i> <br>
+            <i>{{expirationDate}}</i>
+
+        </div>
+
+        <a href="/items/edit/{{this._id}}">Edit</a>
+    </article>
+    {{/each}}
+
+</div>
