@@ -4,13 +4,13 @@ FROM node:14-alpine
 WORKDIR /app
 
 # Copy the package.json and package-lock.json files to the container
-COPY app/package*.json ./
+COPY package*.json ./
 
 # Install app dependencies
 RUN npm install
 
 # Copy the application code to the container
-COPY app/ .
+COPY . .
 
 # Expose the application port
 EXPOSE 3000

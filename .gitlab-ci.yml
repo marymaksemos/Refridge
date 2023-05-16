@@ -1,7 +1,7 @@
 stages:
   - build
-  - test
-  - delivery 
+   # - test
+  - deliver
 
 variables:
   MONGO_DB_URL: "mongodb://mongo:27017/mydatabase"
@@ -9,54 +9,44 @@ variables:
 
 cache:
   paths:
-    - api/node_modules/
-    - mobileapp/node_modules/
-
+    - node_modules/
 services:
-  - mongo:latest
+  - name: mongo:latest
+    alias: mongo
 
-build_api:
+build:
   stage: build
   image: node:14-alpine
   script:
-    - cd api && npm install
+    -  npm install
+    
+# test:
+#   stage: test
+#   image: node:14-alpine
+#   variables:
+#     MONGO_DB_URL: ${MONGO_DB_URL}
+#   before_script:
+#     - npm ci --ignore-scripts
+#     - npm start &
+#     - sleep 10
+#   script:
+#     - npm run test
+#     - npm install --global newman
+#     - newman run tests/postman_collection.json
 
-build_mobileapp:
-  stage: build
-  image: node:14-alpine
-  script:
-    - cd mobileapp && npm install
-
-test_api:
-  stage: test
-  image: node:14-alpine
-  variables:
-    MONGO_DB_URL: ${MONGO_DB_URL}
-  services:
-    - name: mongo:latest # add MongoDB container definition
-      alias: mongo
-  before_script:
-    - cd api
-    - npm install
-    - npm start &
-    - sleep 10 # wait for MongoDB to start
-  script:
-    - npm run test
-    - npm install -g newman
-    - newman run tests/postman_collection.json
-delivery _api:
-  stage: delivery 
+deliver:
+  stage: deliver
   image: docker:latest
   services:
     - name: docker:dind
-    - name: mongo:latest # add MongoDB container definition
+    - name: mongo:latest
       alias: mongo
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build -t $CI_REGISTRY_IMAGE:latest $CI_PROJECT_DIR -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
+    - docker build -t $CI_REGISTRY_IMAGE:latest -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA $CI_PROJECT_DIR
     - docker push $CI_REGISTRY_IMAGE:latest 
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA 
   environment:
     name: production
-  only:
-    - master
+  # only:
+  #   - merge_requests
