@@ -12,6 +12,7 @@ const itemWebRouter = require('./routers/web/items-web-router');
 
 const itemApiRouter = require('./routers/api/items-api-router');
 const recipeApiRouter = require('./routers/api/recipe-api-router');
+const userApiRouter = require('./routers/api/base-api-router')
 
 mongoose.connect(process.env.MONGODB_URL)
     .then(() => console.log("MDB connected..."))
@@ -37,6 +38,7 @@ app.use('/', homeWebRouter);
 app.use('/items', itemWebRouter);
 app.use('/api/items', itemApiRouter);
 app.use('/api/recipes', recipeApiRouter);
+app.use('/api/index', userApiRouter)
 
 
 const PORT = process.env.PORT || 8000;
