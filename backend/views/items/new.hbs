@@ -1,50 +1,27 @@
 <h1>Create New Item</h1>
-<form id="item-form">
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name"><br>
+<form id='item-form'>
+  <label for='name'>Name:</label><br />
+  <input type='text' id='name' name='name' /><br />
 
-    <label for="quantity">quantity:</label><br>
-    <input type="number" id="quantity" name="quantity"><br>
+  <label for='quantity'>quantity:</label><br />
+  <input type='number' id='quantity' name='quantity' /><br />
 
-    <label for="expirationDate">Expiration Date:</label><br>
-    <input type="date" id="expirationDate" name="expirationDate"><br>
+  <label for='expirationDate'>Expiration Date:</label><br />
+  <input type='date' id='expirationDate' name='expirationDate' /><br />
 
-    <!-- Add any other fields that your item might have here... -->
+  <!-- Add any other fields that your item might have here... -->
 
-    <input type="submit" value="Create Item">
+  <input type='submit' value='Create Item' />
 </form>
 
 <script>
-document.getElementById('item-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    var formData = new FormData(event.target);
-    var data = {};
-
-    for (var pair of formData.entries()) {
-        data[pair[0]] = pair[1];
-    }
-
-    fetch('/api/items/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error('Error: ' + response.statusText);
-        }
-    })
-    .then(data => {
-        console.log(data);
-        window.location.href = '/items'; // Redirect to items page
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-});
+  document.getElementById('item-form').addEventListener('submit',
+  function(event) { event.preventDefault(); var formData = new
+  FormData(event.target); var data = {}; for (var pair of formData.entries()) {
+  data[pair[0]] = pair[1]; } fetch('/api/items/', { method: 'POST', headers: {
+  'Content-Type': 'application/json', }, body: JSON.stringify(data), })
+  .then(response => { if (response.ok) { return response.json(); } else { throw
+  new Error('Error: ' + response.statusText); } }) .then(data => {
+  console.log(data); window.location.href = '/items'; // Redirect to items page
+  }) .catch((error) => { console.error('Error:', error); }); });
 </script>
