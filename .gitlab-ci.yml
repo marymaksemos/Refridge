@@ -11,6 +11,7 @@ cache:
   paths:
     - backend/node_modules/
     - frontend/node_modules/
+
 services:
   - name: mongo:latest
     alias: mongo
@@ -27,6 +28,7 @@ build_mobileapp:
   stage: build
   image: node:14-alpine
   script:
+    - npm install -g eslint  # Install ESLint globally
     - cd backend && npm install
     - npm run lint
     - npm run prettier -- --write .
@@ -48,6 +50,7 @@ build_mobileapp:
 #     - npm run test
 #     - npm install -g newman
 #     - newman run tests/api_test/postman_collection.json
+
 deliver:
   stage: deliver
   image: docker:latest
