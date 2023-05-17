@@ -34,7 +34,7 @@ module.exports = {
         try {
             const newItem = new Item(req.body);
             await newItem.save();
-            res.redirect('/'); // You may need to adjust this URL
+            res.redirect('/');
         } catch (error) {
             res.render("error", { message: error.message })
         }

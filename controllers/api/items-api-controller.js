@@ -48,20 +48,13 @@ module.exports = {
         }
     },
 
-    
-
-    
     // Delete item
     delete: async (req, res) => {
         try {
-            const item = await Item.findByIdAndRemove(req.params.id);
-            if (!item) {
-                res.status(404).send("No item found");
-            } else {
-                res.status(200).send("Item deleted successfully");
-            }
+            await Item.findByIdAndDelete(req.params.id);
+            res.redirect('/items'); // You may need to adjust this URL
         } catch (error) {
-            res.status(500).send(error.message)
+            res.render("error", { message: error.message })
         }
-    }
-};
+    },
+}
