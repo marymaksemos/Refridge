@@ -1,4 +1,4 @@
-const User = require('../../models/user-model')
+const User = require('../../models/user-model');
 const bcrypt = require('bcrypt');
 
 module.exports = {
@@ -12,7 +12,7 @@ module.exports = {
     register: async (req, res) => {
         const { name, email, password } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
-        await User.create({ name, email, password: hashedPassword })
+        await User.create({ name, email, password: hashedPassword });
         res.redirect('/login');
     },
 
@@ -34,7 +34,7 @@ module.exports = {
             res.render('userList', { users: users }); 
         } catch (err) {
             console.error(err);
-            res.status(500).send("Internal server error!");
+            res.status(500).send('Internal server error!');
         }
     }
 };

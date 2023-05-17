@@ -14,10 +14,10 @@ const recipeSchema = new mongoose.Schema({
             quantity: String,
             ingredient: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: "Ingredient"
+                ref: 'Ingredient'
             }
         }
     ]
 });
 
-module.exports = mongoose.model("Recipe", recipeSchema)
+module.exports = mongoose.model('Recipe', recipeSchema);

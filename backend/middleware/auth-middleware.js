@@ -5,7 +5,7 @@ const authMiddleware = async (req, res, next) => {
     const token = authorization?.split(' ')[1]; // 9h1we912j3e
 
     if(!token){
-        res.status(401).send("No token")
+        res.status(401).send('No token');
         return;
     }
 
@@ -16,8 +16,8 @@ const authMiddleware = async (req, res, next) => {
 
         next();
     } catch (err) {
-        res.status(401).send("Invalid token")
+        res.status(401).send('Invalid token');
     }
-}
+};
 
 module.exports = authMiddleware;

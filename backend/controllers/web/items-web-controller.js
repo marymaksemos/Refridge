@@ -1,4 +1,4 @@
-const Item = require('./../../models/fridgeItem-model')
+const Item = require('./../../models/fridgeItem-model');
 
 module.exports = {
 
@@ -6,10 +6,10 @@ module.exports = {
     showAll: async (req, res) => {
         try {
             const items = await Item.find().lean();
-            res.render("items/index", { items })
+            res.render('items/index', { items });
 
         } catch (error) {
-            res.render("error", { message: error.message })
+            res.render('error', { message: error.message });
         }
     },
 
@@ -17,16 +17,16 @@ module.exports = {
     showOne: async (req, res) => {
         try {
             const item = await Item.findById(req.params.id);
-            res.render("items/single", item)
+            res.render('items/single', item);
 
         } catch (error) {
-            res.render("error", { message: error.message })
+            res.render('error', { message: error.message });
         }
     },
 
     // Show create form
     showCreateForm: (req, res) => {
-        res.render("items/new");
+        res.render('items/new');
     },
 
     // Create item
@@ -36,23 +36,23 @@ module.exports = {
             await newItem.save();
             res.redirect('/');
         } catch (error) {
-            res.render("error", { message: error.message })
+            res.render('error', { message: error.message });
         }
     },
 
     // Show edit form
     showEditForm: async (req, res) => {
         try {
-            console.log("ID from request: ", req.params.id); // This will log the ID received from the request
+            console.log('ID from request: ', req.params.id); // This will log the ID received from the request
             const item = await Item.findById(req.params.id);
-            console.log("Item from database: ", item); // This will log the item found in the database
+            console.log('Item from database: ', item); // This will log the item found in the database
             if (!item) {
                 res.status(404).send('Item not found');
             } else {
                 res.render('items/edit', { item: item.toObject() }); // Convert item to a plain JavaScript object
             }
         } catch (error) {
-            console.log("Error: ", error); // This will log any errors
+            console.log('Error: ', error); // This will log any errors
             res.status(500).send(error.message);
         }
     },
@@ -69,7 +69,7 @@ module.exports = {
             await Item.findByIdAndDelete(req.params.id);
             res.redirect('/items'); // You may need to adjust this URL
         } catch (error) {
-            res.render("error", { message: error.message })
+            res.render('error', { message: error.message });
         }
     }
-}
+};

@@ -4,7 +4,7 @@ const controller = require('./../../controllers/web/items-web-controller');
 
 router.get('/', controller.showAll);
 
-router.get('/new', controller.showCreateForm)
+router.get('/new', controller.showCreateForm);
 
 router.get('/edit/:id', controller.showEditForm);
 

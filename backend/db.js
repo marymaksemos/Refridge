@@ -3,4 +3,4 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://gustavwvjohansson:kBE
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
-console.log(process.env.MONGODB_URI)
+console.log(process.env.MONGODB_URI);

@@ -7,7 +7,7 @@ module.exports = {
             const recipes = await Recipe.find();
             res.send(recipes);
         } catch (error) {
-            res.status(500).send(error.message)
+            res.status(500).send(error.message);
         }
     },
 
@@ -17,7 +17,7 @@ module.exports = {
             const recipe = await Recipe.findById(req.params.id);
             res.send(recipe);
         } catch (error) {
-            res.status(500).send(error.message)
+            res.status(500).send(error.message);
         }
     },
 
@@ -26,13 +26,13 @@ module.exports = {
         const recipe = new Recipe({
             title: req.body.title,
             instructions: req.body.instructions
-        })
+        });
 
         try {
             await recipe.save();
             res.status(201).send(recipe);
         } catch (error) {
-            res.status(400).send(error.message)
+            res.status(400).send(error.message);
         }
     }
 
