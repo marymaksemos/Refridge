@@ -32,8 +32,7 @@ build_mobileapp:
     - npm install -g prettier
     - cd backend && npm install
     - npm run lint
-    - npm run prettier -- --write .
-
+    - npm run format
 # test_api:
 #   stage: test
 #   image: node:14-alpine
