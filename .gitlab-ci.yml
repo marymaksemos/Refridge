@@ -28,7 +28,8 @@ build_mobileapp:
   stage: build
   image: node:14-alpine
   script:
-    - npm install -g eslint  # Install ESLint globally
+    - npm install -g eslint 
+    - npm install -g prettier
     - cd backend && npm install
     - npm run lint
     - npm run prettier -- --write .
