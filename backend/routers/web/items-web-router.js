@@ -14,6 +14,4 @@ router.put('/:id', controller.updateItem);
 
 router.get('/:id', controller.showOne);
 
-
-
 module.exports = router;

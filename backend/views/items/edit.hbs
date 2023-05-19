@@ -1,15 +1,25 @@
 <h1>Edit Item</h1>
-    <form action="/items/{{item._id}}?_method=PUT" method="POST">
-        <input type="hidden" name="_method" value="PUT">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" value="{{item.name}}"><br>
+<form action='/items/{{item._id}}?_method=PUT' method='POST'>
+  <input type='hidden' name='_method' value='PUT' />
+  <label for='name'>Name:</label><br />
+  <input type='text' id='name' name='name' value='{{item.name}}' /><br />
 
-        <label for="quantity">Quantity:</label><br>
-        <input type="number" id="quantity" name="quantity" value="{{item.quantity}}"><br>
+  <label for='quantity'>Quantity:</label><br />
+  <input
+    type='number'
+    id='quantity'
+    name='quantity'
+    value='{{item.quantity}}'
+  /><br />
 
-        <label for="expirationDate">Expiration Date:</label><br>
-        <input type="date" id="expirationDate" name="expirationDate" value="{{item.expirationDate}}"><br>
-        
-        <input type="submit" value="Update Item">
-        
+  <label for='expirationDate'>Expiration Date:</label><br />
+  <input
+    type='date'
+    id='expirationDate'
+    name='expirationDate'
+    value='{{item.expirationDate}}'
+  /><br />
+
+  <input type='submit' value='Update Item' />
+
 </form>
