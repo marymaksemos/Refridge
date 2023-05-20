@@ -15,14 +15,15 @@ RUN cd backend && npm install
 # RUN cd frontend && npm install
 
 # Copy the rest of the backend code to the container
-COPY backend ./backend/
+COPY backend/ ./backend/
 
 # Copy the rest of the frontend code to the container
-# COPY frontend ./frontend/
+# COPY frontend/ ./frontend/
 
 # Expose the application port
 EXPOSE 8000
 # EXPOSE 3000
 
 # Start the application
-CMD ["npm", "run", "start"]
+CMD ["npm", "start"]
+# CMD ["npm", "run", "start"]
