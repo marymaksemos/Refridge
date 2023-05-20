@@ -16,15 +16,7 @@ services:
   - name: mongo:latest
     alias: mongo
 
-# build_api:
-#   stage: build
-#   image: node:14-alpine
-#   script:
-#     - cd frontend && npm install
-#     - npm run lint
-#     - npm run prettier -- --write .
-
-build_mobileapp:
+build_backend:
   stage: build
   image: node:14-alpine
   script:
@@ -33,6 +25,15 @@ build_mobileapp:
     - cd backend && npm install
     - npm run lint
     - npm run format
+# build_frontend:
+#   stage: build
+#   image: node:14-alpine
+#   script:
+#     - npm install -g eslint 
+#     - npm install -g prettier
+#     - cd frontend && npm install
+#     - npm run lint
+#     - npm run format
 # test_api:
 #   stage: test
 #   image: node:14-alpine
@@ -42,7 +43,7 @@ build_mobileapp:
 #     - name: mongo:latest # add MongoDB container definition
 #       alias: mongo
 #   before_script:
-#     - cd api
+#     - cd frontend
 #     - npm install
 #     - npm start &
 #     - sleep 10 # wait for MongoDB to start
