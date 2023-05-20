@@ -4,18 +4,19 @@ FROM node:14-alpine
 WORKDIR /app
 
 # Copy the package.json and package-lock.json files to the container
-COPY backend/package*.json ./backend/
+COPY backend/package*.json ./
 
 # Copy the package.json and package-lock.json files for frontend
 # COPY frontend/package*.json ./frontend/
 
 # Install backend dependencies
-RUN cd backend && npm install
+RUN cd backend 
+RUN npm install
 # Install frontend dependencies
 # RUN cd frontend && npm install
 
 # Copy the rest of the backend code to the container
-COPY backend/ ./backend/
+COPY backend/ ./
 
 # Copy the rest of the frontend code to the container
 # COPY frontend/ ./frontend/
