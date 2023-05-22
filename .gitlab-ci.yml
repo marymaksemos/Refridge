@@ -25,6 +25,7 @@ build_backend:
     - cd backend && npm install
     - npm run lint
     - npm run format
+
 # build_frontend:
 #   stage: build
 #   image: node:14-alpine
@@ -34,6 +35,8 @@ build_backend:
 #     - cd frontend && npm install
 #     - npm run lint
 #     - npm run format
+
+
 # test_api:
 #   stage: test
 #   image: node:14-alpine
@@ -43,7 +46,7 @@ build_backend:
 #     - name: mongo:latest # add MongoDB container definition
 #       alias: mongo
 #   before_script:
-#     - cd frontend
+#     - cd backend
 #     - npm install
 #     - npm start &
 #     - sleep 10 # wait for MongoDB to start
@@ -66,5 +69,6 @@ deliver:
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
   environment:
     name: production
-  # only:
-  #   - master
+  only:
+    - main
+    
