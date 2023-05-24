@@ -72,4 +72,5 @@ module.exports = {
             res.render('error', { message: error.message });
         }
     }
+
 };

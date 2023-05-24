@@ -14,7 +14,6 @@ console.log(controller);
 // Get one item
 router.get('/:id', controller.getOne);
 
-
 // Delete item
 router.delete('/:id', controller.delete);
 
