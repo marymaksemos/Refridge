@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('./../../controllers/api/items-api-controller')
+const controller = require('./../../controllers/api/items-api-controller');
 
 // Get all items
 router.get('/', controller.getAll);
@@ -13,7 +13,6 @@ console.log(controller);
 
 // Get one item
 router.get('/:id', controller.getOne);
-
 
 // Delete item
 router.delete('/:id', controller.delete);
