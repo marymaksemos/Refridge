@@ -39,7 +39,7 @@ module.exports = {
             return;
         }
 
-        const token = jwt.sign({ userId: user._id }, 'secretKey', { expiresIn: '1h' }); // expires in 1 hour
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' }); // expires in 1 hour
         res.cookie('token', token, { httpOnly: true });
 
         // Add more user session logic here if needed

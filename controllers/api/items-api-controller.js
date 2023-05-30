@@ -13,6 +13,7 @@ module.exports = {
 
     // Get one item
     getOne: async (req, res) => {
+        console.log('getOne method invoked with id:', req.params.id);
         try {
             const items = await Item.findById(req.params.id);
             res.send(items);
@@ -50,9 +51,11 @@ module.exports = {
 
     // Delete item
     delete: async (req, res) => {
+        console.log('deleteItem method invoked with id:', req.params.id);
         try {
-            await Item.findByIdAndDelete(req.params.id);
+            await Item.findOneAndDelete({_id: req.params.id});
             res.redirect('/items'); // You may need to adjust this URL
+            console.log(req.params.id)
         } catch (error) {
             res.render("error", { message: error.message })
         }

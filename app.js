@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+var cookieParser = require('cookie-parser')
 
 
 // Require routes
@@ -34,6 +35,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
+app.use(cookieParser()) // kan tas bort efter react är klart
 
 
 // Use routes

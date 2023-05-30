@@ -15,6 +15,7 @@ module.exports = {
 
     // Show one
     showOne: async (req, res) => {
+        console.log('ShowOne method invoked with id:', req.params.id);
         try {
             const item = await Item.findById(req.params.id);
             res.render("items/single", item)
@@ -65,9 +66,11 @@ module.exports = {
 
     // Delete item
     deleteItem: async (req, res) => {
+        console.log('deleteItem method invoked with id:', req.params.id);
         try {
-            await Item.findByIdAndDelete(req.params.id);
+            await Item.findOneAndDelete({_id: req.params.id})
             res.redirect('/items'); // You may need to adjust this URL
+            console.log(req.params.id)
         } catch (error) {
             res.render("error", { message: error.message })
         }

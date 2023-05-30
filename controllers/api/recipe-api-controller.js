@@ -13,6 +13,7 @@ module.exports = {
 
     // Get one recipe
     getOne: async (req, res) => {
+        console.log('getOne method invoked with id:', req.params.id);
         try {
             const recipe = await Recipe.findById(req.params.id);
             res.send(recipe);

@@ -1,8 +1,9 @@
 const jwt = require('jsonwebtoken');
 
 const authMiddleware = async (req, res, next) => {
-    const authorization = req.headers.authorization; // Bearer 9h1we912j3e
-    const token = authorization?.split(' ')[1]; // 9h1we912j3e
+    const authorization = req.cookies.token; // Bearer 9h1we912j3e
+    console.log(authorization)
+    const token = authorization
 
     if(!token){
         res.status(401).send("No token")
@@ -17,7 +18,9 @@ const authMiddleware = async (req, res, next) => {
         next();
     } catch (err) {
         res.status(401).send("Invalid token")
+        console.log(err)
     }
+    
 }
 
 module.exports = authMiddleware;
