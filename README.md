@@ -27,5 +27,3 @@ Contact Us:
     If you have any questions or feedback about our app, please email us.
    
 
-jk
-jhgdhfsjkfhks
