@@ -3,15 +3,19 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "start": "node app.js",
     "start": "node server.js",
     "server": "node --watch server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "run": "node app.js",
-    "lint": "eslint . --fix",
-    "format": "prettier --write ."
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "debug": "set DEBUG=express:* & node app.js"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
@@ -20,10 +24,17 @@
     "hbs": "^4.2.0",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
+    "jose": "^4.14.4",
+    "jsonwebtoken": "^9.0.0",
+    "method-override": "^3.0.0",
     "mongoose": "^7.1.1",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.22"
   },
   "devDependencies": {
+    "eslint": "7.32.0",
+    "prettier": "2.4.1"
+  }
     "concurrently": "^8.0.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",

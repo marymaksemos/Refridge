@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('./../controllers/auth-web-controller');
+const controller = require('../../controllers/web/auth-web-controller');
 
 router.get('/register', controller.registerForm);
 router.post('/register', controller.register);
