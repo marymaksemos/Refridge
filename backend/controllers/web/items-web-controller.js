@@ -32,7 +32,7 @@ module.exports = {
     try {
       const newItem = new Item({
         ...req.body,
-        userId: req.userId
+        userId: req.userId,
       });
       await newItem.save();
       res.redirect('/');

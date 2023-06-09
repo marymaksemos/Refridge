@@ -24,21 +24,19 @@ module.exports = {
 
   // Create item
   create: async (req, res) => {
-
-    console.log("User ID from request: ", req.userId);
+    console.log('User ID from request: ', req.userId);
 
     const item = new Item({
       name: req.body.name,
       quantity: req.body.quantity,
       expirationDate: req.body.expirationDate,
-      userId: req.userId
+      userId: req.userId,
     });
 
     try {
       await item.save();
-      
-      res.status(201).send(item);
 
+      res.status(201).send(item);
     } catch (error) {
       res.status(400).send(error.message);
     }

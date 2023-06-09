@@ -13,39 +13,18 @@
 
   <input type='submit' value='Create Item' />
 </form>
-<div id="message"></div>
+<div id='message'></div>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('item-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-      var formData = new FormData(event.target);
-      var data = {};
-      for (var pair of formData.entries()) {
-        data[pair[0]] = pair[1];
-      }
-      fetch('/api/items/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Error: ' + response.statusText);
-        }
-      })
-      .then(data => {
-        console.log(data);
-        document.getElementById("message").innerText = "Item created successfully";
-        window.location.href = '/items';
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        document.getElementById("message").innerText = "Error: " + error;
-      });
-    });
-  });
+  document.getElementById('item-form').addEventListener('submit',
+  function(event) { event.preventDefault(); var formData = new
+  FormData(event.target); var data = {}; for (var pair of formData.entries()) {
+  data[pair[0]] = pair[1]; } fetch('/api/items/', { method: 'POST', headers: {
+  'Content-Type': 'application/json', }, body: JSON.stringify(data), })
+  .then(response => { if (response.ok) { return response.json(); } else { throw
+  new Error('Error: ' + response.statusText); } }) .then(data => {
+  console.log(data); document.getElementById("message").innerText = "Item
+  created successfully"; window.location.href = '/items'; }) .catch((error) => {
+  console.error('Error:', error); document.getElementById("message").innerText =
+  "Error: " + error; }); }); });
 </script>
