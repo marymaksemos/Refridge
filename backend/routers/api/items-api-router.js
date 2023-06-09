@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('./../../controllers/api/items-api-controller');
+const authMiddleware = require('../../middleware/auth-middleware');
 
 // Get all items
 router.get('/', controller.getAll);
 
 // Create item
-router.post('/', controller.create);
+router.post('/', authMiddleware, controller.create);
 // Edit item
-router.put('/:id', controller.update);
+router.put('/:id', authMiddleware, controller.update);
 console.log(controller);
 
 // Get one item

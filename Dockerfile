@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:14-bullseye
 
 # Set the working directory
 WORKDIR /app
@@ -14,5 +14,7 @@ COPY backend/ ./
 
 # Expose the application port
 EXPOSE 8000
+EXPOSE 5001
+EXPOSE 3000
 # Start the application
-CMD ["npm", "start"]
+CMD ["node", "app.js"]
