@@ -4,7 +4,7 @@ module.exports = {
   // Show all
   showAll: async (req, res) => {
     try {
-      const items = await Item.find().lean();
+      const items = await Item.find({ userId: req.userId }).lean();
       res.render('items/index', { items });
     } catch (error) {
       res.render('error', { message: error.message });
@@ -30,7 +30,10 @@ module.exports = {
   // Create item
   createItem: async (req, res) => {
     try {
-      const newItem = new Item(req.body);
+      const newItem = new Item({
+        ...req.body,
+        userId: req.userId
+      });
       await newItem.save();
       res.redirect('/');
     } catch (error) {

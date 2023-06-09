@@ -4,7 +4,7 @@ module.exports = {
   // Get all items
   getAll: async (req, res) => {
     try {
-      const items = await Item.find();
+      const items = await Item.find({ userId: req.userId });
       res.send(items);
     } catch (error) {
       res.status(500).send(error.message);
@@ -24,15 +24,21 @@ module.exports = {
 
   // Create item
   create: async (req, res) => {
+
+    console.log("User ID from request: ", req.userId);
+
     const item = new Item({
       name: req.body.name,
       quantity: req.body.quantity,
       expirationDate: req.body.expirationDate,
+      userId: req.userId
     });
 
     try {
       await item.save();
+      
       res.status(201).send(item);
+
     } catch (error) {
       res.status(400).send(error.message);
     }
