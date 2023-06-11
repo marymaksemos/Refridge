@@ -1,6 +1,6 @@
 stages:
   - build
-  # - test
+  - test
   - deliver
 
 variables:
@@ -37,23 +37,18 @@ build_backend:
 #     - npm run format
 
 
-# test_api:
-#   stage: test
-#   image: node:14-alpine
-#   variables:
-#     MONGO_DB_URL: ${MONGO_DB_URL}
-#   services:
-#     - name: mongo:latest # add MongoDB container definition
-#       alias: mongo
-#   before_script:
-#     - cd backend
-#     - npm install
-#     - npm start &
-#     - sleep 10 # wait for MongoDB to start
-#   script:
-#     - npm run test
-#     - npm install -g newman
-#     - newman run tests/api_test/postman_collection.json
+test_app:
+  stage: test
+  image: node:14-alpine
+  variables:
+    MONGO_DB_URL: ${MONGO_DB_URL}
+  services:
+    - name: mongo:latest
+      alias: mongo
+  script:
+    - cd backend/client
+    - npm install
+    - npm test -- --coverage --watchAll=false
 
 deliver:
   stage: deliver
