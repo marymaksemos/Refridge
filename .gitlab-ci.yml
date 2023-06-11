@@ -10,7 +10,7 @@ variables:
 cache:
   paths:
     - backend/node_modules/
-    - frontend/node_modules/
+    - backend/client/node_modules/
 
 services:
   - name: mongo:latest
@@ -26,16 +26,6 @@ build_backend:
     - cd backend && npm install
     - npm run lint
     - npm run format
-
-# build_frontend:
-#   stage: build
-#   image: node:14-alpine
-#   script:
-#     - npm install -g eslint 
-#     - npm install -g prettier
-#     - cd frontend && npm install
-#     - npm run lint
-#     - npm run format
 
 
 test_app:
