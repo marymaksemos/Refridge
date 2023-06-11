@@ -9,24 +9,17 @@ variables:
 
 cache:
   paths:
-    - backend/node_modules/
-    - backend/client/node_modules/
-
-services:
-  - name: mongo:latest
-    alias: mongo
+    - client/node_modules/
 
 build_backend:
   stage: build
   image: node:14-alpine
   script:
     - npm cache clean --force
-    - cd backend && npm install
-    # - npm install eslint-config-react-app --legacy-peer-deps
-    # - npm install v8-compile-cache
+    - cd backend
+    - npm install --legacy-peer-deps
     - npm run lint
     - npm run format
-
 
 test_app:
   stage: test
@@ -57,4 +50,3 @@ deliver:
     name: production
   only:
     - main
-    
