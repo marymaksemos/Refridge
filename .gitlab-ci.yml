@@ -21,9 +21,8 @@ build_backend:
   image: node:14-alpine
   script:
     - npm cache clean --force
-    - npm install -g eslint prettier
-    - npm install eslint-config-react-app --legacy-peer-deps
     - cd backend && npm install
+    - npm install eslint-config-react-app --legacy-peer-deps
     - npm run lint
     - npm run format
 
