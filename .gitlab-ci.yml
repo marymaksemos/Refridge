@@ -6,8 +6,9 @@ stages:
 variables:
   MONGO_DB_URL: 'mongodb+srv://gustavwvjohansson:kBEpmXAUtCaPuAkP@refridgecluster.fieialy.mongodb.net/'
   NODE_ENV: 'production'
-
-
+cache:
+  paths:
+    - backend/node_modules/
 
 build_backend:
   stage: build
