@@ -37,9 +37,9 @@
     "react": "^17.0.2"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.14.5",
     "eslint": "^8.0.0",
-    "prettier": "2.4.1"
+    "prettier": "2.4.1",
+    "@babel/plugin-proposal-private-property-in-object": "^7.14.5"
   },
   "main": "app.js",
   "keywords": [],
