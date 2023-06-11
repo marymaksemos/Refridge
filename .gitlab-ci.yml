@@ -20,10 +20,10 @@ build_backend:
   stage: build
   image: node:14-alpine
   script:
-    # - npm install -g eslint 
+    - npm install -g eslint 
     - npm install -g prettier
     - cd backend && npm install
-    # - npm run lint
+    - npm run lint
     - npm run format
 
 # build_frontend:

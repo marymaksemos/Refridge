@@ -17,4 +17,4 @@ EXPOSE 8000
 EXPOSE 5001
 EXPOSE 3000
 # Start the application
-CMD ["node", "app.js"]
+CMD ["node", "start"]
