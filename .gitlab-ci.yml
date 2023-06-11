@@ -20,8 +20,8 @@ build_backend:
   stage: build
   image: node:14-alpine
   script:
-    - apk add --no-cache git # Install git
-    - npm install -g eslint eslint-config-react-app prettier
+    - npm install -g eslint prettier
+    - npm install eslint-config-react-app --legacy-peer-deps
     - cd backend && npm install
     - npm run lint
     - npm run format
